@@ -32,6 +32,14 @@ header{
     border-bottom: 1px solid #d2d2d2;
 }
 
+.card-item div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 40%;
+
+}
+
 .card-item span{
     width: 100px;
     font-size: 80px;

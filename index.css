@@ -1,8 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: Smythe, Arial, Helvetica, sans-serif;
+    border: 2px solid blue;
+    max-width:600px;
+    
 }
 
 h1{
@@ -18,55 +24,72 @@ header{
     background-image: url(ferks-unsplash\ 1.png);
     background-repeat: no-repeat;
     color: #fff;
-    height: 120px;
-    width: 100%;
-    text-align: justify;
     padding: 20px;
 }
 
-.menu-content{
-    max-width: 600px;
-    display: flex;
-    margin: 0 40px;
-    border-bottom: 1px solid #D2D2D2;
-}
-
-.menu-content h2{
-    margin: 0;
-    font-size: 70px;
-    width: 85px;
-}
-
-.item-details{
+.card-item{
+    margin: 10px 40px;
     padding: 10px;
-    width: 100%;
-    justify-content: space-around;
+    display: flex;
     align-items: center;
-    display:  flex;
-    margin-left: 10px;
-    min-width: 200px;
+    border-bottom: 1px solid #d2d2d2;
 }
 
- .ingredient,.price,.name{
-    margin: 10px 0;
+.card-item span{
+    width: 100px;
+    font-size: 80px;
+    margin-right: 20px;
+}
+
+.card-item button{
+    margin-left: auto;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #d2d2d2;
+    border-radius: 50%;
+
+
+}
+
+.orders{
+    display: none;
+    margin: 0 20px;
+    border: 1px salmon solid;
 } 
 
-.name{
-    font-size: 28px;
-    font-weight: bold;
+.total{
+    margin-left:25px;
 }
 
-.price{
-    font-size: 20px;
-    font-weight: bold;
+.orders h2{
+    text-align: center;
 }
 
-button{
-    border: 1px solid #d2d2d2;
-    background-color: #fff;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+.order-list{
+    
+    border-bottom: 2px solid black;
+    margin: 5px 20px;
+}
+
+.order-list ul{
+    list-style: none;
+    padding: 0;
+}
+
+.order-list li{
+    /* padding-left:0 ; */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.order-list button{
+    border: 1px solid;
+    border-radius:10px ;
+    margin-left: 5px;
+    /* color: #d2d2d2; */
+}
+
+.order-list span{
     margin-left: auto;
 }
-

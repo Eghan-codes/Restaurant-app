@@ -26,6 +26,7 @@ function displayItems(){
 }
 displayItems()
 
+// Events in the document
 document.addEventListener('click', function(e){
     if(e.target.dataset.item){
         handleAddItem(e.target.dataset.item)
@@ -36,6 +37,7 @@ document.addEventListener('click', function(e){
     }
 })
 
+// This function adds an item, performs calculation and displays the items
 function handleAddItem(itemId){
     let html = ``
     arrOfOrders.push(menuArray[itemId])
@@ -60,6 +62,7 @@ function handleAddItem(itemId){
     orderTotal.innerHTML = `<p>Total Price: $${totalPrice}</p>`
 }
 
+// This function removes items from an array
 function handleRemoveItem(itemId){
     arrOfOrders.pop(itemId)
     console.log(arrOfOrders)

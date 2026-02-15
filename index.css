@@ -66,7 +66,6 @@ header div{
 .orders{
     display: none;
     margin: 0 20px;
-    border: 1px salmon solid;
 } 
 
 .total{
@@ -83,13 +82,14 @@ header div{
     margin: 5px 20px;
 }
 
-.order-list ul{
-    list-style: none;
-    padding: 0;
+.order-list div{
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 0 5px;
 }
 
 .order-list li{
-    /* padding-left:0 ; */
     padding: 10px;
     display: flex;
     align-items: center;
@@ -99,7 +99,6 @@ header div{
     border: 1px solid;
     border-radius:10px ;
     margin-left: 5px;
-    /* color: #d2d2d2; */
 }
 
 .order-list span{

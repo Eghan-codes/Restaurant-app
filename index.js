@@ -4,7 +4,7 @@ const itemDisplay = document.getElementById('container')
 const ordersContainer = document.getElementById('orders')
 const orderList = document.getElementById('order-list')
 const orderTotal = document.getElementById('total')
-console.log(menuArray)
+
 let arrOfOrders = []
 // This function only displays our items/product to user in the web browser.
 function displayItems(){
@@ -32,8 +32,8 @@ document.addEventListener('click', function(e){
         handleAddItem(e.target.dataset.item)
     }
 
-    if(e.target.dataset.remove){
-        handleRemoveItem(e.target.dataset.remove)
+    if(e.target.id){
+        handleRemoveItem(e.target.id)
     }
 })
 
@@ -41,11 +41,13 @@ document.addEventListener('click', function(e){
 function handleAddItem(itemId){
     let html = ``
     arrOfOrders.push(menuArray[itemId])
-    arrOfOrders.forEach(function(item){
-        html += `
-            <ul>
-                <li>${item.name} <button data-remove=${item.id}>remove</button> <span>$${item.price}</span></li>
-            </ul>
+    arrOfOrders.map(function(item){
+        return html += `
+            <div>
+                <p>${item.name}</p>
+                <button id = '${item.id}'>remove</button>
+                <span>$${item.price}</span>
+            </div>
         `
     })
     ordersContainer.style.display = 'block'
@@ -62,8 +64,40 @@ function handleAddItem(itemId){
     orderTotal.innerHTML = `<p>Total Price: $${totalPrice}</p>`
 }
 
-// This function removes items from an array
+// console.log(arrOfOrders)
+
+// This function removes item, performs calculation and displays items
 function handleRemoveItem(itemId){
-    arrOfOrders.pop(itemId)
-    console.log(arrOfOrders)
+    let html = ``
+    const newItemId = Number(itemId)
+    const newOrdersObj = arrOfOrders.findIndex(function(order){
+        return order.id === newItemId
+    })
+    console.log(newOrdersObj)
+    if(newOrdersObj !== -1){
+        arrOfOrders.splice(newOrdersObj,1)
+
+    }
+
+    arrOfOrders.forEach(function(item){
+        html += ` <div>
+                <p>${item.name}</p>
+                <button id = '${item.id}'>remove</button>
+                <span>$${item.price}</span>
+            </div>`
+    })
+    if(arrOfOrders.length > 0){
+        const price = arrOfOrders.map(item => item.price)
+        
+        const totalPrice = price.reduce((total,currentElement) => {
+            return total + currentElement
+        })
+        
+        orderList.innerHTML=html
+        orderTotal.innerHTML = `Total price: $${totalPrice}`
+    }
+    else{
+        ordersContainer.style.display = 'none'
+        orderTotal.innerHTML = `Total price: $0`
+    }
 }

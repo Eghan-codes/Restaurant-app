@@ -65,12 +65,9 @@ header div{
 
 .orders{
     display: none;
-    margin: 0 20px;
+    margin: 20px;
 } 
 
-.total{
-    margin-left:25px;
-}
 
 .orders h2{
     text-align: center;
@@ -79,7 +76,7 @@ header div{
 .order-list{
     
     border-bottom: 2px solid black;
-    margin: 5px 20px;
+    /* margin: 5px 20px; */
 }
 
 .order-list div{
@@ -90,7 +87,7 @@ header div{
 }
 
 .order-list li{
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     align-items: center;
 }
@@ -104,3 +101,55 @@ header div{
 .order-list span{
     margin-left: auto;
 }
+
+.order-btn, .pay-btn{
+    background-color: #16DB99;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    border: 1px solid;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.payment-modal{
+    display: none;
+    position: absolute;
+    top: 350px;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    margin: auto;
+    padding: 5px 10px;
+    width: 50%;
+    height: 350px;
+    box-shadow: 5px 5px 370px 50px #888888, -10px -5px 10px  #888888;
+
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+form input{
+    padding: 10px 15px;
+    margin: 8px;
+    border: 1px solid;
+}
+
+/*Removes arrows/spinners from our number input field. Effective for only these browsers: Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Removes arrows/spinners from our number input field. Effective for Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

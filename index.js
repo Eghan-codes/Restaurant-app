@@ -6,6 +6,9 @@ const orderList = document.getElementById('order-list')
 const orderTotal = document.getElementById('total')
 const orderBtn = document.getElementById('order-btn')
 const paymentModal = document.getElementById('payment-modal')
+const payBtn = document.getElementById('pay-btn')
+const orderMsg = document.getElementById('order-message')
+const paymentDetails = document.getElementById('payment-details')
 
 let arrOfOrders = []
 // This function only displays our items/product to user in the web browser.
@@ -33,14 +36,25 @@ document.addEventListener('click', function(e){
     if(e.target.dataset.item){
         handleAddItem(e.target.dataset.item)
     }
-
+    // This event checks whether an item is removed from the list of arrOfOrders
     if(e.target.id){
         handleRemoveItem(e.target.id)
     }
-
-    if(e.target.id){
+    // This event checks whether the complete order btn is clicked
+    if(e.target.id === 'order-btn'){
         console.log(e.target.id)
         paymentModal.style.display = 'block'
+    }
+
+    if(e.target.id === 'pay-btn'){
+        e.preventDefault()
+        ordersContainer.style.display = 'none'
+        paymentModal.style.display = 'none'
+        const paymentModalData = new FormData(paymentDetails)
+        console.log(paymentModalData)
+        const name = paymentModalData.get('Username')
+        console.log(name)
+        orderMsg.textContent = `${name} your order is on the way!`
     }
 })
 
@@ -48,11 +62,12 @@ document.addEventListener('click', function(e){
 function handleAddItem(itemId){
     let html = ``
     arrOfOrders.push(menuArray[itemId])
-    arrOfOrders.map(function(item){
-        return html += `
+    // include the index of each order so removals target the correct slot
+    arrOfOrders.forEach(function(item){
+        html += `
             <div>
                 <p>${item.name}</p>
-                <button id = '${item.id}'>remove</button>
+                <button id='${item.id}'>remove</button>
                 <span>$${item.price}</span>
             </div>
         `
@@ -74,37 +89,28 @@ function handleAddItem(itemId){
 // console.log(arrOfOrders)
 
 // This function removes item, performs calculation and displays items
-function handleRemoveItem(itemId){
+function handleRemoveItem(index){
+    // remove the specific order at the given array position
+    arrOfOrders.splice(index, 1)
+
     let html = ``
-    const newItemId = Number(itemId)
-    const newOrdersObj = arrOfOrders.findIndex(function(order){
-        return order.id === newItemId
-    })
-
-    if(newOrdersObj !== -1){
-        arrOfOrders.splice(newOrdersObj,1)
-
-    }
-
     arrOfOrders.forEach(function(item){
         html += ` <div>
                 <p>${item.name}</p>
-                <button id = '${item.id}'>remove</button>
+                <button id='${item.id}'>remove</button>
                 <span>$${item.price}</span>
             </div>`
     })
+
     if(arrOfOrders.length > 0){
-        const price = arrOfOrders.map(item => item.price)
-        
-        const totalPrice = price.reduce((total,currentElement) => {
-            return total + currentElement
-        })
-        
-        orderList.innerHTML=html
+        const totalPrice = arrOfOrders.reduce(function(sum, item){
+            return sum + item.price
+        }, 0)
+        orderList.innerHTML = html
         orderTotal.innerHTML = `Total price: $${totalPrice}`
     }
     else{
-        ordersContainer.style.display = 'none'
+        // ordersContainer.style.display = 'none'
         orderTotal.innerHTML = `Total price: $0`
     }
 }

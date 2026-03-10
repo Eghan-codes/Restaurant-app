@@ -108,7 +108,7 @@ header div{
     font-weight: bold;
     width: 100%;
     border: 1px solid;
-    padding: 20px 0;
+    padding: 15px 0;
     cursor: pointer;
 }
 
@@ -125,7 +125,6 @@ header div{
     width: 50%;
     height: 350px;
     box-shadow: 5px 5px 370px 50px #888888, -10px -5px 10px  #888888;
-
     text-align: center;
 }
 
@@ -139,6 +138,11 @@ form input{
     padding: 10px 15px;
     margin: 8px;
     border: 1px solid;
+}
+
+.order-message{
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 /*Removes arrows/spinners from our number input field. Effective for only these browsers: Chrome, Safari, Edge, Opera */
